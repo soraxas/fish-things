@@ -1,8 +1,9 @@
 
 function __fish_synoservice_get_services
-  sudo synoservice --list
+  sudo synoservice --list | string replace -r '^(pkgctl.*)$' '$1\tInstalled package' | string replace -r '^(?!pkgctl)(.*)' '$1\tBuilt-in'
 end
 
+complete -c synoservice -x
 complete -c synoservice -l help -d "Show this help"
 complete -c synoservice -l help-dev -d "More specialty functions for deveplopment"
 complete -c synoservice -l list -d "List all available services"
