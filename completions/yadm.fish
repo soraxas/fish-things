@@ -75,16 +75,16 @@ complete --force-files -c yadm      -l yadm-bootstrap -d 'Override location of y
 set -l GIT_DIR (yadm introspect repo)
 set -l GIT_WORK_TREE (yadm enter 'echo $GIT_WORK_TREE')
 # setup the correct git-dir by appending it to git's argunment
-complete -c yadm -w "git --git-dir='$GIT_DIR' --work-tree='$GIT_WORK_TREE'"
+# complete -c yadm -w "git --git-dir='$GIT_DIR' --work-tree='$GIT_WORK_TREE'"
 
-# grep -P -v '^complet.*__fish_git_using_command.*(add|commit).*__fish_git_files' /usr/share/fish/completions/git.fish | sed 's/ git / yadm /' | source
-# #grep -v '__fish_git_files .*untracked' /usr/share/fish/completions/git.fish | sed 's/ git / yadm /' | source
+grep -P -v '^complet.*__fish_git_using_command.*(add|commit).*__fish_git_files' /usr/share/fish/completions/git.fish | sed 's/ git / yadm /' | source
+#grep -v '__fish_git_files .*untracked' /usr/share/fish/completions/git.fish | sed 's/ git / yadm /' | source
 
-# #complete -f -c yadm -n '__fish_git_using_command add' -a '(__fish_git_files modified untracked deleted unmerged)'
+#complete -f -c yadm -n '__fish_git_using_command add' -a '(__fish_git_files modified untracked deleted unmerged)'
 
-# # I don't think I care about the untracked files, given how slow it is.
-# #complete -k -f -c yadm -n '__fish_git_using_command add' -a '(__fish_git_files untracked)'
-# complete -c yadm -n '__fish_git_using_command add' -a '(__fish_git_files modified deleted unmerged)'
+# I don't think I care about the untracked files, given how slow it is.
+#complete -k -f -c yadm -n '__fish_git_using_command add' -a '(__fish_git_files untracked)'
+complete -c yadm -n '__fish_git_using_command add' -a '(__fish_git_files modified deleted unmerged)'
 
-# # I also don't care about untracked files in commit
-# complete -c yadm -n '__fish_git_using_command commit' -a '(__fish_git_files modified deleted modified-staged-deleted)'
+# I also don't care about untracked files in commit
+complete -c yadm -n '__fish_git_using_command commit' -a '(__fish_git_files modified deleted modified-staged-deleted)'
